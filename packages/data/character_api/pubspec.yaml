@@ -2,6 +2,7 @@ name: character_api
 description: The Ducduckgo character api.
 version: 0.0.1
 homepage:
+publish_to: 'none'
 
 environment:
   sdk: '>=3.1.3 <4.0.0'
@@ -10,6 +11,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  http: ^1.1.0
+
+  duckduckgo:
+    path: ../../models/duckduckgo
 
 dev_dependencies:
   flutter_test:
