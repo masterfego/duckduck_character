@@ -1,0 +1,26 @@
+name: screens
+description: Character Viewer Screen.
+version: 0.0.1
+homepage:
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.1.3 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  components:
+    path: ../components
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
