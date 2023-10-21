@@ -13,17 +13,20 @@ void runSharedApp({required Configuration configuration}) {
 
   // Run app
   runApp(
-    MaterialApp(
-      title: configuration.homePageName,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: configuration.appColor,
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<CharacterBloc>(
+            create: (_) => CharacterBloc(repository: repository))
+      ],
+      child: MaterialApp(
+        title: configuration.homePageName,
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: configuration.appColor,
+          ),
         ),
-      ),
-      home: BlocProvider(
-        create: (_) => CharacterBloc(repository: repository),
-        child: ListPage(pageTitle: configuration.homePageName),
+        home: ListPage(pageTitle: configuration.homePageName),
       ),
     ),
   );

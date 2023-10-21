@@ -5,8 +5,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'related_topic.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.pascal)
 class RelatedTopic extends Equatable {
+  @JsonKey(name: 'FirstURL')
   final String? firstUrl;
   final Icon? icon;
   final String? result;

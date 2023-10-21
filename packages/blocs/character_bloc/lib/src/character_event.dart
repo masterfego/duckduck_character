@@ -13,3 +13,9 @@ class CharacterSearched extends CharacterEvent {
 }
 
 class CharacterSearchCleared extends CharacterEvent {}
+
+class CharacterSelected extends CharacterEvent {
+  final Character character;
+
+  CharacterSelected({required this.character});
+}

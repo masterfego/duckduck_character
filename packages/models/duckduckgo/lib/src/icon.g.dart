@@ -7,13 +7,13 @@ part of 'icon.dart';
 // **************************************************************************
 
 Icon _$IconFromJson(Map<String, dynamic> json) => Icon(
-      height: json['height'] as String?,
-      url: json['url'] as String?,
-      width: json['width'] as String?,
+      height: json['Height'] as String?,
+      url: json['URL'] as String?,
+      width: json['Width'] as String?,
     );
 
 Map<String, dynamic> _$IconToJson(Icon instance) => <String, dynamic>{
-      'height': instance.height,
-      'url': instance.url,
-      'width': instance.width,
+      'Height': instance.height,
+      'URL': instance.url,
+      'Width': instance.width,
     };

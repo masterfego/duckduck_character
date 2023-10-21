@@ -14,6 +14,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
         super(
           const CharacterState(
             characters: [],
+            selectedCharacter: null,
             filteredCharacters: [],
             searchTerm: null,
           ),
@@ -21,6 +22,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     on<CharacterStarted>(_onCharacterStared, transformer: restartable());
     on<CharacterSearched>(_onCharacterSearched);
     on<CharacterSearchCleared>(_onCharacterSearchCleared);
+    on<CharacterSelected>(_onCharacterSelected);
   }
 
   Future _onCharacterStared(
@@ -29,10 +31,12 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
   ) async {
     final characters = await _repository.getCharacters();
     if (characters != null) {
-      emit(state.copyWith(
-        characters: characters,
-        filteredCharacters: characters,
-      ));
+      emit(
+        state.copyWith(
+          characters: characters,
+          filteredCharacters: characters,
+        ),
+      );
     }
   }
 
@@ -75,5 +79,12 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
 
     //filter
     add(CharacterSearched(searchTerm: ''));
+  }
+
+  void _onCharacterSelected(
+    CharacterSelected event,
+    Emitter<CharacterState> emit,
+  ) {
+    emit(state.copyWith(selectedCharacter: () => event.character));
   }
 }

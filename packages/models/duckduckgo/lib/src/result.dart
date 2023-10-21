@@ -6,7 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'result.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.pascal)
 class Result extends Equatable {
   final String? abstract;
   final String? abstractSource;
@@ -28,6 +28,7 @@ class Result extends Equatable {
   final List<RelatedTopic>? relatedTopics;
   final List<dynamic>? results;
   final String? type;
+  @JsonKey(name: 'meta')
   final Meta? meta;
 
   const Result({
