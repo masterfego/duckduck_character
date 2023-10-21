@@ -1,0 +1,29 @@
+name: simpsonviewer
+description: The Simpson character viewer app.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  shared:
+    path: ../shared
+  simpson_viewer_configuration:
+    path: ../../data/configuration/simpson_viewer_configuration
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
