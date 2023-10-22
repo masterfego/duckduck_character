@@ -15,6 +15,22 @@ Go in the root of the project and run these commands:
 
 ```
 
+## Running the apps
+
+The repo already inclure the VSCode launch options in the `.vscode` folder.
+
+To run manually the app:
+
+```sh
+cd packages/apps/simpsonviewer/
+flutter run # choose your device
+
+#or
+cd packages/apps/wireviewer/
+flutter run # choose your device
+
+```
+
 ## Testing
 
 (Optional) To update the golden files:

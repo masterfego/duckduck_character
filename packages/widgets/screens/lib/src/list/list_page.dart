@@ -56,7 +56,7 @@ class _ListPageState extends State<ListPage> {
           child: TextField(
             controller: _searchController,
             decoration: InputDecoration(
-              hintText: 'Type 2 char. to start seaching...',
+              hintText: 'Type 2 char. to start searching...',
               filled: true,
               fillColor: Colors.white,
               border: OutlineInputBorder(
