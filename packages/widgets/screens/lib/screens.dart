@@ -1,2 +1,2 @@
-export 'src/list_page.dart';
-export 'src/detail_page.dart';
+export 'src/list/list_page.dart';
+export 'src/detail/detail_page.dart';

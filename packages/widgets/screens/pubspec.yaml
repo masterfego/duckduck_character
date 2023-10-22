@@ -18,6 +18,8 @@ dependencies:
     path: ../components
   character_bloc:
     path: ../../blocs/character_bloc
+  character_repository:
+    path: ../../repository/character_repository
 
 dev_dependencies:
   flutter_test:

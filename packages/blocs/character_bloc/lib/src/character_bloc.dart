@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:character_bloc/src/loading_state.dart';
 import 'package:character_repository/character_repository.dart';
 import 'package:equatable/equatable.dart';
 
@@ -17,6 +18,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
             selectedCharacter: null,
             filteredCharacters: [],
             searchTerm: null,
+            state: LoadingState.loading,
           ),
         ) {
     on<CharacterStarted>(_onCharacterStared, transformer: restartable());
@@ -29,12 +31,25 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     CharacterStarted event,
     Emitter<CharacterState> emit,
   ) async {
+    emit(
+      state.copyWith(state: LoadingState.loading),
+    );
+
     final characters = await _repository.getCharacters();
     if (characters != null) {
       emit(
         state.copyWith(
           characters: characters,
           filteredCharacters: characters,
+          state: LoadingState.completed,
+        ),
+      );
+    } else {
+      emit(
+        state.copyWith(
+          characters: [],
+          filteredCharacters: [],
+          state: LoadingState.failure,
         ),
       );
     }

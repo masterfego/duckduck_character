@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class CharacterTile extends StatelessWidget {
   final String title;
   final VoidCallback? onTap;
+  final bool isSelected;
 
   const CharacterTile({
     super.key,
     required this.title,
     this.onTap,
+    this.isSelected = false,
   });
 
   @override
@@ -26,10 +28,15 @@ class CharacterTile extends StatelessWidget {
                 Expanded(
                   child: Text(
                     title,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontWeight:
+                            isSelected ? FontWeight.bold : FontWeight.normal),
                   ),
                 ),
-                const Icon(Icons.arrow_forward_ios)
+                Icon(
+                  Icons.arrow_forward_ios,
+                  color: isSelected ? Colors.red[900] : null,
+                )
               ],
             ),
           ),

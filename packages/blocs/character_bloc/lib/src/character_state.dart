@@ -5,12 +5,14 @@ class CharacterState extends Equatable {
   final List<Character> filteredCharacters;
   final Character? selectedCharacter;
   final String? searchTerm;
+  final LoadingState state;
 
   const CharacterState({
     required this.characters,
     required this.selectedCharacter,
     required this.filteredCharacters,
     required this.searchTerm,
+    required this.state,
   });
 
   CharacterState copyWith({
@@ -18,6 +20,7 @@ class CharacterState extends Equatable {
     Character? Function()? selectedCharacter,
     List<Character>? filteredCharacters,
     String? Function()? searchTerm,
+    LoadingState? state,
   }) {
     return CharacterState(
       characters: characters ?? this.characters,
@@ -26,6 +29,7 @@ class CharacterState extends Equatable {
           : this.selectedCharacter,
       filteredCharacters: filteredCharacters ?? this.filteredCharacters,
       searchTerm: searchTerm != null ? searchTerm() : this.searchTerm,
+      state: state ?? this.state,
     );
   }
 
@@ -35,5 +39,6 @@ class CharacterState extends Equatable {
         selectedCharacter,
         filteredCharacters,
         searchTerm,
+        state,
       ];
 }

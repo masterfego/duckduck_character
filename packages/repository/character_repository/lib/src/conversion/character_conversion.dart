@@ -24,7 +24,11 @@ extension RelatedTopicConvertion on api.RelatedTopic {
       // INFO: conversion failures can also be logged
       return null;
     }
-    final title = firstUrl!.replaceAll('$baseUrl/', '');
+    final title = firstUrl!
+        .replaceAll('$baseUrl/', '')
+        .replaceAll('_', ' ')
+        .replaceAll('%22', '"');
+
     final imageUrl = icon?.url != null && icon!.url!.isNotEmpty
         ? baseUrl + icon!.url!
         : null;
