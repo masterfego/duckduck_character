@@ -42,7 +42,7 @@ class CharacterList extends StatelessWidget {
             imagePackage: 'screens',
             title: 'No result',
             description:
-                'No result was found.\n If you are seraching, please adjsut your serach term',
+                'No result was found.\n If you are searching, please adjust your search term',
             buttonLabel: 'Reload',
             onPressed: () =>
                 context.read<CharacterBloc>().add(CharacterStarted()),

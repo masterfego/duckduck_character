@@ -19,6 +19,7 @@ void runSharedApp({required Configuration configuration}) {
             create: (_) => CharacterBloc(repository: repository))
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: configuration.homePageName,
         theme: ThemeData(
           useMaterial3: true,

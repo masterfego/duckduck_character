@@ -43,7 +43,10 @@ class StatusView extends StatelessWidget {
             const SizedBox(height: 32),
             Text(title),
             const SizedBox(height: 16),
-            Text(description),
+            Text(
+              description,
+              textAlign: TextAlign.center,
+            ),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: onPressed,

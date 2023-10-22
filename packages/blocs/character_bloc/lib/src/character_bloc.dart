@@ -60,7 +60,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     Emitter<CharacterState> emit,
   ) {
     var filteredCharacters = <Character>[];
-    final shoudlSearch = event.searchTerm.trim().isEmpty;
+    final shoudlSearch = event.searchTerm.trim().isNotEmpty;
 
     if (!shoudlSearch) {
       filteredCharacters = state.characters;

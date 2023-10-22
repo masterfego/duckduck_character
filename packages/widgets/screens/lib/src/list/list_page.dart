@@ -16,6 +16,7 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> {
+  final TextEditingController _searchController = TextEditingController();
   late CharacterBloc bloc;
 
   @override
@@ -50,8 +51,68 @@ class _ListPageState extends State<ListPage> {
           ),
         ),
         backgroundColor: Theme.of(context).colorScheme.secondary,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(60),
+          child: TextField(
+            controller: _searchController,
+            decoration: InputDecoration(
+              hintText: 'Type 2 char. to start seaching...',
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              suffixIcon: _searchController.text.isNotEmpty
+                  ? IconButton(
+                      icon: const Icon(Icons.clear),
+                      onPressed: () {
+                        _searchController.clear();
+                        context
+                            .read<CharacterBloc>()
+                            .add(CharacterSearchCleared());
+                        setState(() {});
+                      },
+                    )
+                  : null,
+            ),
+            onChanged: (text) {
+              final searchTerm = text.trim();
+              if (searchTerm.length >= 2) {
+                context
+                    .read<CharacterBloc>()
+                    .add(CharacterSearched(searchTerm: searchTerm));
+              }
+
+              setState(() {});
+            },
+            onSubmitted: (text) {
+              final searchTerm = text.trim();
+              if (searchTerm.length >= 2) {
+                context
+                    .read<CharacterBloc>()
+                    .add(CharacterSearched(searchTerm: searchTerm));
+              }
+
+              setState(() {});
+            },
+          ),
+        ),
+      ),
+      bottomNavigationBar: TextField(
+        controller: _searchController,
+        style: const TextStyle(color: Colors.white),
+        cursorColor: Colors.white,
+        decoration: const InputDecoration(
+          hintText: 'Search...',
+          hintStyle: TextStyle(color: Colors.white54),
+          border: InputBorder.none,
+        ),
+        onChanged: (value) {
+          // Perform search functionality here
+        },
       ),
       body: SafeArea(
+        minimum: const EdgeInsets.only(top: 16),
         child: checkIsTablet(context)
             ? Row(
                 children: [
