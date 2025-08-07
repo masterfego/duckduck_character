@@ -3,18 +3,49 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Dart
+name: Flutter CI/CD Pipeline
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+
+env: 
+  FLUTTER_VERSION: '3.19.0'
+  JAVA_VERSION: '17'
 
 jobs:
-  build:
+  flutter-pipeline:
     runs-on: [self-hosted, macOS]
+    timeout-minutes: 120
 
     steps:
-      - name: Flutter action
-        uses: subosito/flutter-action@v2.21.0
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Cache Flutter SDK
+        uses: actions/cache@v4
+        id: flutter-cache
+        with:
+          path : |
+            /opt/hostedtoolcache/flutter
+            ~/.pub-cache
+          key: flutter-${{ env.FLUTTER_VERSION }}-${{ runner.os }}
+          restore-keys: |
+            flutter-${{ env.FLUTTER_VERSION }}-
+            flutter-
+            
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Get Flutter Dependencies
+        run: flutter pub get
+      
